@@ -1,6 +1,7 @@
 name: docker_psycher
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: 0 0 */7 * *
 
