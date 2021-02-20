@@ -1,0 +1,13 @@
+name: docker_psycher
+
+on:
+  schedule:
+    - cron: 0 0 */7 * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker build and publish
+        run: |
+          docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
