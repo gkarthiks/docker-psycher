@@ -19,11 +19,11 @@ jobs:
           for i in ${REPO_LIST}
           do
 
-            IMAGE_TAGS=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${DOCKER_USERNAME}/${i}/tags/?page_size=1 | jq -r '.results|.[]|.name')
+            IMAGE_TAGS=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${{secrets.DOCKER_USERNAME}}/${i}/tags/?page_size=1 | jq -r '.results|.[]|.name')
 
             for j in ${IMAGE_TAGS}
             do
-              FULL_IMAGE_LIST="${FULL_IMAGE_LIST} ${DOCKER_USERNAME}/${i}:${j}"
+              FULL_IMAGE_LIST="${FULL_IMAGE_LIST} ${{secrets.DOCKER_USERNAME}}/${i}:${j}"
             done
           done
 
