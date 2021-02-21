@@ -11,4 +11,6 @@ jobs:
     steps:
       - name: Docker build and publish
         run: |
+          chmod +x ./psycher.sh
+          ./psycher.sh
           docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
