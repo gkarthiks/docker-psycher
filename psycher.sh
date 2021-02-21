@@ -3,7 +3,7 @@ set -e
 echo
 # aquire token
 # TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'${DOCKER_USERNAME}'", "password": "'${DOCKER_PASSWORD}'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
-TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'${{secrets.DOCKER_USERNAME}}'", "password": "'${{secrets.DOCKER_PASSWORD}}'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
+TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "${{secrets.DOCKER_USERNAME}}", "password": "${{secrets.DOCKER_PASSWORD}}"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
 # get list of repositories for the user account
 REPO_LIST=$(curl -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${DOCKER_USERNAME}/?page_size=100 | jq -r '.results|.[]|.name')
 
